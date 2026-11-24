@@ -1,0 +1,34 @@
+name: formulae
+# Each formula built from its source on GitHub's macOS runner, checked by
+# Homebrew's own tools and tested as `brew test` tests it.
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: formulae-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  skwird:
+    runs-on: macos-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v5
+      - name: This checkout as the tap
+        run: |
+          taps="$(brew --repository)/Library/Taps/skwir-org"
+          mkdir -p "$taps"
+          ln -s "$GITHUB_WORKSPACE" "$taps/homebrew-tap"
+      - name: Style
+        run: brew style skwir-org/tap
+      - name: Audit
+        run: brew audit --strict skwir-org/tap/skwird
+      - name: Build from source (its main branch, until its first release)
+        run: brew install --HEAD --verbose skwir-org/tap/skwird
+      - name: Test
+        run: brew test --verbose skwir-org/tap/skwird
