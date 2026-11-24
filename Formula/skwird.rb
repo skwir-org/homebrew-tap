@@ -1,10 +1,14 @@
 # skwird, an index of file names kept current by the system's change
 # notifications, answered over a local socket (github.com/skwir-org/skwird).
-# Built from its source. Until its first release, from its main branch alone:
+# Built from its source: a release's,
+#   brew install skwir-org/tap/skwird
+# or its main branch's,
 #   brew install --HEAD skwir-org/tap/skwird
 class Skwird < Formula
   desc "Index of file names kept current, answered over a local socket"
   homepage "https://github.com/skwir-org/skwird"
+  url "https://github.com/skwir-org/skwird/archive/refs/tags/v0.1.0.tar.gz"
+  sha256 "ddb44c9ff571fdb4a0f647c97da66ca11616d0e86190a140ec452682c6e29a1f"
   license any_of: ["MIT", "Apache-2.0"]
   head "https://github.com/skwir-org/skwird.git", branch: "main"
 

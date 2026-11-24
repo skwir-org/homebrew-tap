@@ -30,7 +30,7 @@ jobs:
         run: brew style skwir-org/tap
       - name: Audit
         run: brew audit --strict skwir-org/tap/skwird
-      - name: Build from source (its main branch, until its first release)
-        run: brew install --HEAD --verbose skwir-org/tap/skwird
+      - name: Built from its release's source
+        run: brew install --build-from-source --verbose skwir-org/tap/skwird
       - name: Test
         run: brew test --verbose skwir-org/tap/skwird
