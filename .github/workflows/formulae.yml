@@ -34,3 +34,42 @@ jobs:
         run: brew install --HEAD --verbose skwir-org/tap/skwird
       - name: Test
         run: brew test --verbose skwir-org/tap/skwird
+
+  # skwir's cask: the Mac app of skwir's last release, the release's own
+  # zip, installed as a user installs it and uninstalled after.
+  skwir:
+    runs-on: macos-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+      - name: This checkout as the tap
+        run: |
+          taps="$(brew --repository)/Library/Taps/skwir-org"
+          mkdir -p "$taps"
+          ln -s "$GITHUB_WORKSPACE" "$taps/homebrew-tap"
+      - name: Trusted, as a user trusts it
+        run: brew trust skwir-org/tap
+      - name: Style
+        run: brew style --cask skwir-org/tap/skwir
+      - name: Audit
+        run: brew audit --cask --strict --online skwir-org/tap/skwir
+      - name: Install
+        run: brew install --cask --verbose skwir-org/tap/skwir
+      - name: What was installed
+        run: |
+          # The app, its program on the PATH, its seal whole.
+          test -d /Applications/skwir.app
+          test "$(readlink "$(brew --prefix)/bin/skwir")" = /Applications/skwir.app/Contents/MacOS/skwir
+          codesign --verify --deep --strict /Applications/skwir.app
+          # Still quarantined: macOS asks before its first start, as of
+          # the zip downloaded by hand. The cask never takes that off.
+          xattr -p com.apple.quarantine /Applications/skwir.app
+          # What skwir reads to say nothing of new versions to a copy
+          # Homebrew updates (skwir's ADR-142): this Caskroom's folder.
+          test -d /opt/homebrew/Caskroom/skwir
+          test "$(cat /Applications/skwir.app/Contents/Resources/share/skwir/channel)" = macos
+      - name: Uninstall
+        run: |
+          brew uninstall --cask skwir-org/tap/skwir
+          test ! -e /Applications/skwir.app
+          test ! -e /opt/homebrew/Caskroom/skwir
