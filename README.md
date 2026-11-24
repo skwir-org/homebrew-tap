@@ -9,9 +9,12 @@ notifications, answered over a local socket
 ([github.com/skwir-org/skwird](https://github.com/skwir-org/skwird)).
 Built from its source.
 
-Until its first release, from its main branch:
+Until its first release, from its main branch. Homebrew asks that a
+tap of anyone but its own be trusted first:
 
 ```sh
+brew tap skwir-org/tap
+brew trust skwir-org/tap
 brew install --HEAD skwir-org/tap/skwird
 ```
 

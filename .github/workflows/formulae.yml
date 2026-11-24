@@ -24,6 +24,8 @@ jobs:
           taps="$(brew --repository)/Library/Taps/skwir-org"
           mkdir -p "$taps"
           ln -s "$GITHUB_WORKSPACE" "$taps/homebrew-tap"
+      - name: Trusted, as a user trusts it
+        run: brew trust skwir-org/tap
       - name: Style
         run: brew style skwir-org/tap
       - name: Audit
