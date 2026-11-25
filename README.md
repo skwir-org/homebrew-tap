@@ -9,14 +9,16 @@ notifications, answered over a local socket
 ([github.com/skwir-org/skwird](https://github.com/skwir-org/skwird)).
 Built from its source.
 
-Until its first release, from its main branch. Homebrew asks that a
-tap of anyone but its own be trusted first:
+Homebrew asks that a tap of anyone but its own be trusted first:
 
 ```sh
 brew tap skwir-org/tap
 brew trust skwir-org/tap
-brew install --HEAD skwir-org/tap/skwird
+brew install skwir-org/tap/skwird
 ```
+
+`brew install --HEAD skwir-org/tap/skwird` builds its main branch
+instead.
 
 Then, if you want it:
 
@@ -29,8 +31,8 @@ Documents, Downloads and others) are not read. Give it in System Settings,
 Privacy & Security, Full Disk Access, and again after each upgrade: macOS
 ties the grant to the program's signature.
 
-Each formula is built and tested on GitHub's macOS runner at every push
-(`.github/workflows/formulae.yml`).
+Each formula is built from its release's source and tested on GitHub's
+macOS runner at every push (`.github/workflows/formulae.yml`).
 
 ## skwir
 
