@@ -9,6 +9,13 @@ on:
 permissions:
   contents: read
 
+# Homebrew asks GitHub's API as this run (`brew audit --online` reads the
+# release a cask names): without a token, every job on a runner's address
+# shares 60 requests an hour, which ran out on 2026-11-25. This run's own
+# token reads, as the permissions above allow, and no more.
+env:
+  HOMEBREW_GITHUB_API_TOKEN: ${{ github.token }}
+
 concurrency:
   group: formulae-${{ github.ref }}
   cancel-in-progress: true
