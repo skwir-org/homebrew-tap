@@ -17,7 +17,7 @@ cask "skwir" do
   end
 
   depends_on arch: :arm64
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "skwir.app"
   binary "#{appdir}/skwir.app/Contents/MacOS/skwir"
