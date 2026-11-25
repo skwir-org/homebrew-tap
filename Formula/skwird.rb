@@ -7,8 +7,8 @@
 class Skwird < Formula
   desc "Index of file names kept current, answered over a local socket"
   homepage "https://github.com/skwir-org/skwird"
-  url "https://github.com/skwir-org/skwird/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "ddb44c9ff571fdb4a0f647c97da66ca11616d0e86190a140ec452682c6e29a1f"
+  url "https://github.com/skwir-org/skwird/archive/refs/tags/v0.2.0.tar.gz"
+  sha256 "78a33d216159469757505f186a4c9e68532662183723bbd331b22f2f145f2b0c"
   license any_of: ["MIT", "Apache-2.0"]
   head "https://github.com/skwir-org/skwird.git", branch: "main"
 
