@@ -5,8 +5,7 @@ cask "skwir" do
   version "0.7.1"
   sha256 "5609c56009adad38407286e4253435daf57c4a8064113ca17677a57b5c1f300f"
 
-  url "https://github.com/skwir-org/skwir/releases/download/v#{version}/skwir-#{version}-macos-arm64.zip",
-      verified: "github.com/skwir-org/skwir/"
+  url "https://github.com/skwir-org/skwir/releases/download/v#{version}/skwir-#{version}-macos-arm64.zip"
   name "Skwir"
   desc "Browse, find and organize your files"
   homepage "https://skwir.org/"
