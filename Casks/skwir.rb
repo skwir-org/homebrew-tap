@@ -2,8 +2,8 @@
 # its release, the release's own zip. Written at each release by skwir's
 # `just cask <tag>` (tools/package/cask.py), not by hand.
 cask "skwir" do
-  version "0.7.0"
-  sha256 "0d672e42d4dd06b6373eedfa42c4faa496b01a8d61ad06aca7244c301d1d21c5"
+  version "0.7.1"
+  sha256 "5609c56009adad38407286e4253435daf57c4a8064113ca17677a57b5c1f300f"
 
   url "https://github.com/skwir-org/skwir/releases/download/v#{version}/skwir-#{version}-macos-arm64.zip",
       verified: "github.com/skwir-org/skwir/"
@@ -21,6 +21,7 @@ cask "skwir" do
 
   app "skwir.app"
   binary "#{appdir}/skwir.app/Contents/MacOS/skwir"
+  binary "#{appdir}/skwir.app/Contents/MacOS/skwir", target: "skw"
 
   zap trash: [
     "~/Library/Application Support/skwir",
@@ -36,5 +37,9 @@ cask "skwir" do
 
     Homebrew loads this tap's casks once the tap is trusted:
       brew trust skwir-org/tap
+
+    skwir carries skwird, its index of names. A skwird Homebrew
+    installs takes the carried one's place, and Homebrew updates it:
+      brew install skwir-org/tap/skwird
   EOS
 end
