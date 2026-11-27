@@ -2,8 +2,8 @@
 # its release, the release's own zip. Written at each release by skwir's
 # `just cask <tag>` (tools/package/cask.py), not by hand.
 cask "skwir" do
-  version "0.7.1"
-  sha256 "5609c56009adad38407286e4253435daf57c4a8064113ca17677a57b5c1f300f"
+  version "0.7.2"
+  sha256 "717588776b03f9171063e22c179c0eae43dcfb3e0f7650fedb873a8b3cb658f7"
 
   url "https://github.com/skwir-org/skwir/releases/download/v#{version}/skwir-#{version}-macos-arm64.zip"
   name "Skwir"
